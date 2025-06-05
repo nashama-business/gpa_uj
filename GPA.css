@@ -76,12 +76,12 @@ body {
 .container {
     max-width: 800px;
     width: 90%;
+    background: none;
+    color: #1E191A;
+    border-radius: 12px;
+    text-align: center;
     margin: 20px auto;
     padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
 h1 {
@@ -102,6 +102,7 @@ label {
     font-weight: 500;
     color: #1E191A;
     position: relative;
+    text-align: center;
 }
 
 label i {
@@ -116,8 +117,9 @@ label i {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin: 8px 0 15px;
-    min-height: 40px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    justify-content: center;
 }
 
 .option-button {
@@ -130,10 +132,10 @@ label i {
     transition: all 0.3s ease;
     flex: 1;
     min-width: 60px;
-    min-height: 36px;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
+    max-width: 120px;
 }
 
 .option-button:hover {
@@ -239,15 +241,14 @@ button:hover {
 }
 
 .result {
-    margin: 30px 0 100px;
+    margin-top: 30px;
+    margin-bottom: 100px;
     border-radius: 15px;
-    text-align: right;
+    text-align: center;
     animation: fadeIn 0.5s ease-in-out;
     background: #f8f9fa;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    min-height: 200px;
-    width: 100%;
 }
 
 .result h2 {
@@ -257,10 +258,6 @@ button:hover {
     text-align: center;
     position: relative;
     padding-bottom: 15px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .result h2::after {
@@ -307,11 +304,10 @@ button:hover {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    margin: 20px 0;
+    margin: 20px auto;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    table-layout: fixed;
 }
 
 .result table th {
@@ -321,8 +317,6 @@ button:hover {
     font-weight: 600;
     text-align: center;
     border: none;
-    height: 50px;
-    white-space: nowrap;
 }
 
 .result table td {
@@ -331,9 +325,6 @@ button:hover {
     border: 1px solid #e0e0e0;
     background: #FFFFFF;
     color: #1E191A;
-    height: 45px;
-    vertical-align: middle;
-    white-space: nowrap;
 }
 
 .result table tr:nth-child(even) td {
@@ -520,11 +511,18 @@ table tr:hover {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.footer__content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .footer__content p {
     margin: 0.25rem 0;
     font-size: 0.9rem;
     color: #333;
     font-weight: 700;
+    text-align: center;
 }
 
 .footer__content a {
