@@ -13,6 +13,10 @@ const gradePoints = {
   'هـ': 0.50
 };
 
+// إضافة متغيرات لتتبع تغييرات عدد المواد
+let courseCountChanges = 0;
+const MAX_COURSE_COUNT_CHANGES = 3;
+
 function initializeButtonGroups() {
   const buttonGroups = document.querySelectorAll('.button-group');
   
@@ -37,7 +41,17 @@ function initializeButtonGroups() {
         localStorage.setItem(groupId, button.dataset.value);
 
         if (groupId === 'courseCount') {
-          updateCoursesUI();
+          // زيادة عداد تغييرات عدد المواد
+          courseCountChanges++;
+          
+          // التحقق من تجاوز الحد المسموح
+          if (courseCountChanges > MAX_COURSE_COUNT_CHANGES) {
+            // إزالة الكاش وتحديث الصفحة مباشرة
+            localStorage.clear();
+            window.location.reload();
+          } else {
+            updateCoursesUI();
+          }
         }
       });
     });
