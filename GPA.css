@@ -485,9 +485,6 @@ table tr:hover {
     }
 }
 
-/* -------------------------------------
-17. التذييل | FOOTER
-------------------------------------- */
 .footer {
     background: rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -560,7 +557,4 @@ table tr:hover {
     border-top-color: rgba(0, 0, 0, 0.8);
     margin-bottom: -6px;
     z-index: 1000;
-}
-}
-}
 }
