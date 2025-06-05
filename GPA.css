@@ -85,9 +85,9 @@ body {
     color: #1E191A;
     line-height: 1.6;
     margin: 0;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .wrapper {
@@ -99,12 +99,12 @@ body {
 .container {
     max-width: 800px;
     width: 90%;
-    background: none;
-    color: #1E191A;
-    border-radius: 12px;
-    text-align: center;
     margin: 20px auto;
     padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 h1 {
@@ -139,8 +139,8 @@ label i {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 8px;
-    margin-bottom: 15px;
+    margin: 8px 0 15px;
+    min-height: 40px;
 }
 
 .option-button {
@@ -153,11 +153,11 @@ label i {
     transition: all 0.3s ease;
     flex: 1;
     min-width: 60px;
+    min-height: 36px;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
 }
-
 .option-button:hover {
     background: #ED2B2B;
     border-color: #ED2B2B;
@@ -173,8 +173,9 @@ label i {
 
 input {
     width: 100%;
+    height: 45px;
     padding: 12px 35px;
-    margin-top: 8px;
+    margin: 8px 0;
     border: 1px solid #bdc3c7;
     border-radius: 6px;
     font-size: 14px;
@@ -260,8 +261,7 @@ button:hover {
 }
 
 .result {
-    margin-top: 30px;
-    margin-bottom: 100px;
+    margin: 30px 0 100px;
     border-radius: 15px;
     text-align: right;
     animation: fadeIn 0.5s ease-in-out;
@@ -308,8 +308,7 @@ button:hover {
     font-weight: 600;
 }
 
-.gpa-value,
-.category {
+.gpa-value, .category {
     color: #1E191A;
     font-weight: 600;
     display: inline-block;
@@ -335,6 +334,7 @@ button:hover {
     text-align: center;
     border: none;
     height: 50px;
+    white-space: nowrap;
 }
 
 .result table td {
@@ -345,6 +345,7 @@ button:hover {
     color: #1E191A;
     height: 45px;
     vertical-align: middle;
+    white-space: nowrap;
 }
 
 .result table tr:nth-child(even) td {
@@ -356,29 +357,37 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .button-group {
+        gap: 5px;
+    }
+
+    .option-button {
+        padding: 6px 10px;
+        font-size: 12px;
+        min-width: 50px;
+        min-height: 32px;
+    }
+
     .result {
         padding: 15px;
-        margin-top: 20px;
-        margin-bottom: 60px;
+        margin: 20px 0 60px;
     }
 
     .result h2 {
         font-size: 20px;
-        margin-bottom: 20px;
-    }
-
-    .gpa-value {
-        font-size: 24px;
-    }
-
-    .category {
-        font-size: 18px;
+        height: 50px;
     }
 
     .result table th,
     .result table td {
         padding: 8px 10px;
         font-size: 14px;
+        height: 40px;
     }
 }
 
@@ -467,8 +476,6 @@ table tr:hover {
     flex-direction: row-reverse;
 }
 
-
-
 @media (max-width: 768px) {
 
     .btn {
@@ -525,6 +532,13 @@ table tr:hover {
     text-align: center;
     padding: 1rem 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+}
+
+.footer__content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .footer__content p {
@@ -532,6 +546,7 @@ table tr:hover {
     font-size: 0.9rem;
     color: #333;
     font-weight: 700;
+    min-height: 20px;
 }
 
 .footer__content a {
@@ -608,63 +623,4 @@ table tr:hover {
     border-top-color: rgba(0, 0, 0, 0.8);
     margin-bottom: -6px;
     z-index: 1000;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-display: swap;
-}
-
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #ffffff;
-    color: #1E191A;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 800px;
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-}
-
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-    margin-bottom: 15px;
-}
-
-.option-button {
-    padding: 8px 12px;
-    border: 2px solid #bdc3c7;
-    border-radius: 6px;
-    background: #FFFFFF;
-    color: #1E191A;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    min-width: 60px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
 }
