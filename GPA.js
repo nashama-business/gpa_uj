@@ -478,7 +478,6 @@ function resetForm() {
 
 function enableCourseNameEditing() {
   const courseNames = document.querySelectorAll('.course-name');
-
   courseNames.forEach(courseName => {
     courseName.addEventListener('click', () => {
       const courseNameInput = courseName.nextElementSibling;
