@@ -4,70 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University of Jordan GPA Calculator</title>
   <meta name="author"
     content="My name is Abdulhadi Waheed Abdel Fattah Jebreen, and I am currently studying Management Information Systems at the School of Business, University of Jordan, as part of the Nashama Business group">
   <meta name="keywords"
     content="الجامعة الأردنية, حساب المعدل, GPA Calculator, University of Jordan GPA, University of Jordan GPA tool, معدل الجامعة الأردنية, حاسبة العلامات, GPA Jordan, حساب GPA الجامعة الأردنية, حاسبة المعدل التراكمي, Grade Calculator Jordan" />
   <meta name="description"
     content="احسب معدلك في الجامعة الأردنية بي سهولة  GPA الذكية! سهلة، سريعة، ومخصصة لطلبة الجامعة الأردنية." />
-  
-  <!-- Preload critical resources -->
-  <link rel="preload" href="GPA.css" as="style">
-  <link rel="preload" href="GPA.js" as="script">
-  
-  <!-- Preconnect to external domains -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <!-- Load fonts asynchronously -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  
-  <!-- Critical CSS -->
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #1E191A;
-    }
-    .container {
-      max-width: 800px;
-      width: 90%;
-      margin: 20px auto;
-      padding: 20px;
-      text-align: center;
-    }
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin: 8px 0 15px;
-    }
-    .option-button {
-      padding: 8px 12px;
-      border: 2px solid #bdc3c7;
-      border-radius: 6px;
-      background: #FFFFFF;
-      color: #1E191A;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      flex: 1;
-      min-width: 60px;
-      max-width: 120px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .hidden {
-      display: none !important;
-    }
-  </style>
-  
-  <!-- Load main stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="GPA.css">
-  <title>University of Jordan GPA Calculator</title>
 </head>
 
 <body>
@@ -76,18 +21,6 @@
     <div class="button-group" id="isFirstSemester">
       <button class="option-button selected" data-value="yes">نعم</button>
       <button class="option-button" data-value="no">لا</button>
-    </div>
-
-    
-    <label><i class="fas fa-book"></i>عدد المواد</label>
-    <div class="button-group" id="courseCount">
-      <button class="option-button" data-value="1">1</button>
-      <button class="option-button" data-value="2">2</button>
-      <button class="option-button" data-value="3">3</button>
-      <button class="option-button selected" data-value="4">4</button>
-      <button class="option-button" data-value="5">5</button>
-      <button class="option-button" data-value="6">6</button>
-      <button class="option-button" data-value="7">7</button>
     </div>
 
     <div id="studentStatusSection" class="hidden">
@@ -121,6 +54,16 @@
       <input type="number" id="previousHours" step="1" min="1" placeholder="يرجى أدخل عدد الساعات التراكمي">
     </div>
 
+    <label><i class="fas fa-book"></i>عدد المواد</label>
+    <div class="button-group" id="courseCount">
+      <button class="option-button" data-value="1">1</button>
+      <button class="option-button" data-value="2">2</button>
+      <button class="option-button" data-value="3">3</button>
+      <button class="option-button selected" data-value="4">4</button>
+      <button class="option-button" data-value="5">5</button>
+      <button class="option-button" data-value="6">6</button>
+      <button class="option-button" data-value="7">7</button>
+    </div>
 
     <section id="coursesContainer"></section>
 
@@ -143,7 +86,6 @@
   </footer>
 
   <script src="GPA.js"></script>
-
 </body>
 
 </html>
