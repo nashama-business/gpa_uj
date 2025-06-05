@@ -7,27 +7,10 @@
     caret-color: transparent;
 }
 
-/* Font face declarations */
-@font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-display: swap;
-}
 
 .error-message {
     position: fixed;
@@ -158,6 +141,7 @@ label i {
     font-size: 14px;
     font-weight: 500;
 }
+
 .option-button:hover {
     background: #ED2B2B;
     border-color: #ED2B2B;
@@ -308,7 +292,8 @@ button:hover {
     font-weight: 600;
 }
 
-.gpa-value, .category {
+.gpa-value,
+.category {
     color: #1E191A;
     font-weight: 600;
     display: inline-block;
