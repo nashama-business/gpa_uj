@@ -65,10 +65,9 @@ body {
     background: #ffffff;
     color: #1E191A;
     line-height: 1.6;
-    min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    min-height: 100vh;
 }
 
 .wrapper {
@@ -83,8 +82,6 @@ body {
     margin: 20px auto;
     padding: 20px;
     text-align: center;
-    min-height: calc(100vh - 120px);
-    position: relative;
 }
 
 h1 {
@@ -652,16 +649,15 @@ table tr:hover {
     --border-radius: 6px;
 }
 
-/* Layout stability */
+/* Critical CSS for FCP */
 body {
     font-family: 'Poppins', sans-serif;
     background: #ffffff;
     color: #1E191A;
     line-height: 1.6;
-    min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    min-height: 100vh;
 }
 
 /* Button group stability */
@@ -716,13 +712,6 @@ label {
     text-align: center;
 }
 
-label i {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 /* Result section stability */
 .result {
     margin: 30px 0 100px;
@@ -756,32 +745,6 @@ label i {
 .result table td {
     padding: 12px 15px;
     min-height: 45px;
-    text-align: center;
-}
-
-/* Footer stability */
-.footer {
-    height: 80px;
-    padding: 1rem 0;
-    background: rgba(0, 0, 0, 0.2);
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-
-.footer__content {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    min-height: 60px;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.footer__content p {
-    margin: 0.25rem 0;
-    min-height: 20px;
-    font-size: 0.9rem;
     text-align: center;
 }
 
