@@ -1,12 +1,3 @@
-/* Critical CSS - Load First */
-:root {
-    --container-width: 800px;
-    --button-height: 45px;
-    --input-height: 45px;
-    --spacing-unit: 8px;
-    --border-radius: 6px;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -14,222 +5,6 @@
     text-decoration: none;
     list-style: none;
     caret-color: transparent;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #ffffff;
-    color: #1E191A;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-}
-
-.container {
-    max-width: var(--container-width);
-    width: 95%;
-    margin: 20px auto;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Optimize button rendering */
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-unit);
-    margin: var(--spacing-unit) 0 15px;
-    min-height: var(--button-height);
-    justify-content: center;
-    align-items: center;
-    will-change: transform;
-}
-
-.option-button {
-    height: var(--button-height);
-    min-width: 60px;
-    max-width: 120px;
-    padding: 8px 12px;
-    border: 2px solid #007B3A;
-    border-radius: var(--border-radius);
-    background: #FFFFFF;
-    color: #007B3A;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    will-change: transform, background-color;
-}
-
-/* Optimize input rendering */
-input {
-    width: 100%;
-    height: var(--input-height);
-    padding: 12px 35px;
-    margin: var(--spacing-unit) 0;
-    border: 1px solid #bdc3c7;
-    border-radius: var(--border-radius);
-    font-size: 14px;
-    text-align: center;
-    box-sizing: border-box;
-    will-change: transform;
-}
-
-/* Optimize table rendering */
-.result table {
-    width: 100%;
-    margin: 20px 0;
-    border-collapse: separate;
-    border-spacing: 0;
-    table-layout: fixed;
-    will-change: transform;
-}
-
-.result table th,
-.result table td {
-    padding: 12px 15px;
-    min-height: 45px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    will-change: transform;
-}
-
-/* Optimize animations */
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-/* Optimize error message rendering */
-.error-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(220, 53, 69, 0.95);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 9999;
-    animation: slideIn 0.3s ease-out, fadeOut 0.3s ease-out 2.7s forwards;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 50px;
-    min-width: 200px;
-    will-change: transform, opacity;
-}
-
-/* Optimize result section rendering */
-.result {
-    margin: 30px 0 100px;
-    padding: 25px;
-    min-height: 200px;
-    border-radius: 15px;
-    background: #f8f9fa;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    will-change: transform;
-}
-
-/* Optimize student status buttons */
-#studentStatus .option-button {
-    min-width: 120px;
-    max-width: 200px;
-    will-change: transform, background-color;
-}
-
-/* Optimize course code and hours buttons */
-.course-code .button-group,
-.course-hours .button-group {
-    display: grid;
-    gap: 5px;
-    will-change: transform;
-}
-
-.course-code .button-group {
-    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-}
-
-.course-hours .button-group {
-    grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
-}
-
-/* Optimize responsive breakpoints */
-@media (max-width: 1024px) {
-    :root {
-        --container-width: 90%;
-        --button-height: 40px;
-        --input-height: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --button-height: 35px;
-        --input-height: 35px;
-        --spacing-unit: 6px;
-    }
-
-    .course-code .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
-    }
-
-    .course-hours .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-    }
-
-    #studentStatus .option-button {
-        min-width: 110px;
-        font-size: 11px;
-        padding: 6px 8px;
-        height: 35px;
-    }
-}
-
-@media (max-width: 480px) {
-    :root {
-        --button-height: 30px;
-        --input-height: 30px;
-        --spacing-unit: 4px;
-    }
-
-    .course-code .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-    }
-
-    .course-hours .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
-    }
-
-    #studentStatus .option-button {
-        min-width: 95px;
-        font-size: 10px;
-        padding: 4px 6px;
-        height: 30px;
-    }
 }
 
 .error-message {
@@ -285,10 +60,28 @@ input {
     padding: 0;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    color: #1E191A;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.container {
+    max-width: var(--container-width);
+    width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
 }
 
 h1 {
@@ -319,6 +112,33 @@ label i {
     transform: translateY(-50%);
 }
 
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+    margin: var(--spacing-unit) 0 15px;
+    min-height: var(--button-height);
+    justify-content: center;
+    align-items: center;
+}
+
+.option-button {
+    height: var(--button-height);
+    min-width: 60px;
+    max-width: 120px;
+    padding: 8px 12px;
+    border: 2px solid #007B3A;
+    border-radius: var(--border-radius);
+    background: #FFFFFF;
+    color: #007B3A;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
 .option-button:hover {
     background: #ED2B2B;
     border-color: #ED2B2B;
@@ -331,6 +151,18 @@ label i {
     color: #FFFFFF;
     border-color: #007B3A;
     box-shadow: 0 2px 4px rgba(0, 123, 58, 0.2);
+}
+
+input {
+    width: 100%;
+    height: var(--input-height);
+    padding: 12px 35px;
+    margin: var(--spacing-unit) 0;
+    border: 1px solid #bdc3c7;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 input:focus {
@@ -399,6 +231,16 @@ button:hover {
     transform: scale(1.05);
 }
 
+.result {
+    margin: 30px 0 100px;
+    padding: 25px;
+    min-height: 200px;
+    border-radius: 15px;
+    background: #f8f9fa;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
 .result h2 {
     font-size: 24px;
     margin-bottom: 25px;
@@ -450,6 +292,14 @@ button:hover {
     min-width: 80px;
 }
 
+.result table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
 .result table th {
     background: #007B3A;
     color: #FFFFFF;
@@ -486,6 +336,12 @@ button:hover {
 }
 
 @media (max-width: 1024px) {
+    :root {
+        --container-width: 90%;
+        --button-height: 40px;
+        --input-height: 40px;
+    }
+
     h1 {
         font-size: 1.8rem;
     }
@@ -496,6 +352,12 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --button-height: 35px;
+        --input-height: 35px;
+        --spacing-unit: 6px;
+    }
+
     .container {
         width: 95%;
         padding: 15px;
@@ -538,6 +400,12 @@ button:hover {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --button-height: 30px;
+        --input-height: 30px;
+        --spacing-unit: 4px;
+    }
+
     .container {
         width: 98%;
         padding: 10px;
@@ -678,6 +546,255 @@ button:hover {
     z-index: 1000;
 }
 
+/* Base dimensions */
+:root {
+    --container-width: 800px;
+    --button-height: 45px;
+    --input-height: 45px;
+    --spacing-unit: 8px;
+    --border-radius: 6px;
+}
+
+/* Container responsiveness */
+.container {
+    max-width: var(--container-width);
+    width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Button group responsiveness */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+    margin: var(--spacing-unit) 0 15px;
+    min-height: var(--button-height);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Option button responsiveness */
+.option-button {
+    height: var(--button-height);
+    min-width: 60px;
+    max-width: 120px;
+    padding: 8px 12px;
+    border: 2px solid #007B3A;
+    border-radius: var(--border-radius);
+    background: #FFFFFF;
+    color: #007B3A;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Input responsiveness */
+input {
+    width: 100%;
+    height: var(--input-height);
+    padding: 12px 35px;
+    margin: var(--spacing-unit) 0;
+    border: 1px solid #bdc3c7;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Table responsiveness */
+.result table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+.result table th,
+.result table td {
+    padding: 12px 15px;
+    min-height: 45px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+    :root {
+        --container-width: 90%;
+        --button-height: 40px;
+        --input-height: 40px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .result h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --button-height: 35px;
+        --input-height: 35px;
+        --spacing-unit: 6px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .button-group {
+        gap: 5px;
+    }
+
+    .option-button {
+        min-width: 50px;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    input {
+        font-size: 13px;
+        padding: 10px 30px;
+    }
+
+    .result {
+        padding: 15px;
+        margin: 20px 0 60px;
+    }
+
+    .result h2 {
+        font-size: 20px;
+    }
+
+    .result table th,
+    .result table td {
+        padding: 8px 10px;
+        min-height: 35px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --button-height: 30px;
+        --input-height: 30px;
+        --spacing-unit: 4px;
+    }
+
+    .container {
+        width: 98%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .button-group {
+        gap: 4px;
+    }
+
+    .option-button {
+        min-width: 45px;
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+
+    input {
+        font-size: 12px;
+        padding: 8px 25px;
+    }
+
+    .result {
+        padding: 10px;
+        margin: 15px 0 40px;
+    }
+
+    .result h2 {
+        font-size: 18px;
+    }
+
+    .result table th,
+    .result table td {
+        padding: 6px 8px;
+        min-height: 30px;
+        font-size: 12px;
+    }
+}
+
+/* Student status buttons responsiveness */
+#studentStatus .option-button {
+    min-width: 120px;
+    max-width: 200px;
+}
+
+@media (max-width: 768px) {
+    #studentStatus .option-button {
+        min-width: 110px;
+        font-size: 11px;
+        padding: 6px 8px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    #studentStatus .option-button {
+        min-width: 95px;
+        font-size: 10px;
+        padding: 4px 6px;
+        height: 30px;
+    }
+}
+
+/* Course code and hours buttons responsiveness */
+.course-code .button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 5px;
+}
+
+.course-hours .button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    gap: 5px;
+}
+
+@media (max-width: 768px) {
+    .course-code .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    }
+
+    .course-hours .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .course-code .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    }
+
+    .course-hours .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+    }
+}
+
 #previousGPA,
 #previousHours {
     -moz-appearance: textfield;
@@ -690,4 +807,92 @@ button:hover {
 #previousHours::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+/* Table responsiveness for small screens */
+@media (max-width: 425px) {
+    .result table {
+        font-size: 8px;
+    }
+
+    .result table th,
+    .result table td {
+        padding: 3px 2px;
+        min-height: 22px;
+    }
+
+    .result table th {
+        font-size: 8px;
+        padding: 2px 1px;
+    }
+
+    .result table td:last-child {
+        font-size: 8px;
+    }
+
+    .gpa-value {
+        font-size: 12px;
+    }
+
+    .category {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 375px) {
+    .result table {
+        font-size: 7px;
+    }
+
+    .result table th,
+    .result table td {
+        padding: 2px 1px;
+        min-height: 20px;
+    }
+
+    .result table th {
+        font-size: 7px;
+        padding: 2px 1px;
+    }
+
+    .result table td:last-child {
+        font-size: 7px;
+    }
+
+    .gpa-value {
+        font-size: 10px;
+    }
+
+    .category {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    .result table {
+        font-size: 6px;
+    }
+
+    .result table th,
+    .result table td {
+        padding: 1px;
+        min-height: 18px;
+    }
+
+    .result table th {
+        font-size: 6px;
+        padding: 1px;
+    }
+
+    .result table td:last-child {
+        font-size: 6px;
+    }
+
+    .gpa-value {
+        font-size: 9px;
+    }
+
+    .category {
+        font-size: 7px;
+    }
 }
