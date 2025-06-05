@@ -1,67 +1,74 @@
-const gradePoints = {
-  'أ': 4.00,
-  'أ-': 3.75,
-  'ب+': 3.50,
-  'ب': 3.00,
-  'ب-': 2.75,
-  'ج+': 2.50,
-  'ج': 2.00,
-  'ج-': 1.75,
-  'د+': 1.50,
-  'د': 1.25,
-  'د-': 1.00,
-  'هـ': 0.50
+// Cache DOM elements
+const DOM = {
+    isFirstSemester: document.getElementById('isFirstSemester'),
+    previousDataSection: document.getElementById('previousDataSection'),
+    courseCount: document.getElementById('courseCount'),
+    coursesContainer: document.getElementById('coursesContainer'),
+    calculateButton: document.getElementById('calculateButton'),
+    resetButton: document.getElementById('resetButton'),
+    resultSection: document.getElementById('resultSection'),
+    studentStatusSection: document.getElementById('studentStatusSection'),
+    studentStatus: document.getElementById('studentStatus'),
+    semesterType: document.getElementById('semesterType'),
+    isFirstMajor: document.getElementById('isFirstMajor')
 };
 
+// Cache grade points
+const gradePoints = {
+    'أ': 4.00,
+    'أ-': 3.75,
+    'ب+': 3.50,
+    'ب': 3.00,
+    'ب-': 2.75,
+    'ج+': 2.50,
+    'ج': 2.00,
+    'ج-': 1.75,
+    'د+': 1.50,
+    'د': 1.25,
+    'د-': 1.00,
+    'هـ': 0.50
+};
+
+// Cache selected values
+const selectedValues = new Map();
+
 function initializeButtonGroups() {
-  const buttonGroups = document.querySelectorAll('.button-group');
-
-  buttonGroups.forEach(group => {
-    const buttons = group.querySelectorAll('.option-button');
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('selected'));
-        button.classList.add('selected');
-
-        if (group.id === 'courseCount') {
-          updateCoursesUI();
-        }
-      });
+    const buttonGroups = document.querySelectorAll('.button-group');
+    
+    buttonGroups.forEach(group => {
+        group.addEventListener('click', (e) => {
+            if (e.target.classList.contains('option-button')) {
+                const buttons = group.querySelectorAll('.option-button');
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                e.target.classList.add('selected');
+                
+                if (group.id === 'courseCount') {
+                    updateCoursesUI();
+                }
+            }
+        });
     });
-  });
 }
 
 function getSelectedValue(groupId) {
-  const group = document.getElementById(groupId);
-  if (!group) return null;
-  const selectedButton = group.querySelector('.option-button.selected');
-  return selectedButton ? selectedButton.dataset.value : null;
+    if (selectedValues.has(groupId)) {
+        return selectedValues.get(groupId);
+    }
+    
+    const group = document.getElementById(groupId);
+    if (!group) return null;
+    
+    const selectedButton = group.querySelector('.option-button.selected');
+    const value = selectedButton ? selectedButton.dataset.value : null;
+    selectedValues.set(groupId, value);
+    return value;
 }
-
-const isFirstSemesterGroup = document.getElementById('isFirstSemester');
-const previousDataSection = document.getElementById('previousDataSection');
-const courseCountGroup = document.getElementById('courseCount');
-const coursesContainer = document.getElementById('coursesContainer');
-const calculateButton = document.getElementById('calculateButton');
-const resetButton = document.getElementById('resetButton');
-const resultSection = document.getElementById('resultSection');
-const studentStatusSection = document.getElementById('studentStatusSection');
-const studentStatusGroup = document.getElementById('studentStatus');
-const semesterTypeGroup = document.getElementById('semesterType');
-const isFirstMajorGroup = document.getElementById('isFirstMajor');
-
-isFirstSemesterGroup.addEventListener('click', () => {
-  const isFirst = getSelectedValue('isFirstSemester') === 'yes';
-  previousDataSection.classList.toggle('hidden', isFirst);
-  studentStatusSection.classList.toggle('hidden', isFirst);
-  toggleRepeatedOptions();
-});
 
 let courses = [];
 
 function updateCoursesUI() {
   const count = parseInt(getSelectedValue('courseCount')) || 4;
-  coursesContainer.innerHTML = '';
+  DOM.coursesContainer.innerHTML = '';
   courses = [];
 
   for (let i = 1; i <= count; i++) {
@@ -119,7 +126,7 @@ function updateCoursesUI() {
         </section>
       </section>
     `;
-    coursesContainer.appendChild(coursesection);
+    DOM.coursesContainer.appendChild(coursesection);
 
     const repeatedsection = coursesection.querySelector('.repeated-course');
     const repeatedGroup = coursesection.querySelector('.course-repeated');
@@ -333,7 +340,7 @@ function calculateGPA() {
   setTimeout(() => {
     document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 300);
-  resetButton.classList.remove('hidden');
+  DOM.resetButton.classList.remove('hidden');
 }
 
 function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHours, semesterGPA, semesterHours, finalStatus) {
@@ -465,7 +472,7 @@ function getGPACategory(gpa) {
 function resetForm() {
   const isFirstSemesterButton = document.querySelector('#isFirstSemester .option-button[data-value="yes"]');
   isFirstSemesterButton.click();
-  previousDataSection.classList.add('hidden');
+  DOM.previousDataSection.classList.add('hidden');
   document.getElementById('previousGPA').value = '';
   document.getElementById('previousHours').value = '';
 
@@ -473,7 +480,7 @@ function resetForm() {
   courseCountButton.click();
 
   resultSection.classList.add('hidden');
-  resetButton.classList.add('hidden');
+  DOM.resetButton.classList.add('hidden');
 }
 
 function enableCourseNameEditing() {
@@ -507,9 +514,16 @@ function enableCourseNameEditing() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initializeButtonGroups();
-  updateCoursesUI();
+    initializeButtonGroups();
+    updateCoursesUI();
 
-  calculateButton.addEventListener('click', calculateGPA);
-  resetButton.addEventListener('click', resetForm);
+    DOM.calculateButton.addEventListener('click', calculateGPA);
+    DOM.resetButton.addEventListener('click', resetForm);
+    
+    DOM.isFirstSemester.addEventListener('click', () => {
+        const isFirst = getSelectedValue('isFirstSemester') === 'yes';
+        DOM.previousDataSection.classList.toggle('hidden', isFirst);
+        DOM.studentStatusSection.classList.toggle('hidden', isFirst);
+        toggleRepeatedOptions();
+    });
 });
