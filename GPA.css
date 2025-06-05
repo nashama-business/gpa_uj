@@ -19,12 +19,13 @@
     font-size: 14px;
     font-weight: 500;
     z-index: 9999;
-    animation: slideIn 0.3s ease-out, fadeOut 0.3s ease-out 2.7s forwards;
     display: flex;
     align-items: center;
     gap: 10px;
     min-height: 50px;
     min-width: 200px;
+    contain: layout size style;
+    will-change: transform, opacity;
 }
 
 .error-message i {
@@ -54,7 +55,7 @@
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 body {
@@ -65,6 +66,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    content-visibility: auto;
+    contain: layout size style;
 }
 
 .wrapper {
@@ -82,6 +85,7 @@ body {
     text-align: center;
     margin: 20px auto;
     padding: 20px;
+    contain: layout size style;
 }
 
 h1 {
@@ -117,9 +121,9 @@ label i {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 8px;
-    margin-bottom: 15px;
     justify-content: center;
+    margin: 8px 0 15px;
+    contain: layout size style;
 }
 
 .option-button {
@@ -132,10 +136,12 @@ label i {
     transition: all 0.3s ease;
     flex: 1;
     min-width: 60px;
+    max-width: 120px;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    max-width: 120px;
+    contain: layout size style;
+    will-change: transform, background-color;
 }
 
 .option-button:hover {
@@ -162,6 +168,7 @@ input {
     transition: border-color 0.3s ease;
     background: #FFFFFF;
     color: #1E191A;
+    contain: layout size style;
 }
 
 input:focus {
@@ -188,6 +195,7 @@ input:focus {
     border-radius: 4px;
     border-right: 3px solid #dc3545;
     min-height: 35px;
+    contain: layout size style;
 }
 
 .error-message-inline i {
@@ -241,14 +249,14 @@ button:hover {
 }
 
 .result {
-    margin-top: 30px;
-    margin-bottom: 100px;
+    margin: 30px 0 100px;
     border-radius: 15px;
     text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
     background: #f8f9fa;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    contain: layout size style;
+    content-visibility: auto;
 }
 
 .result h2 {
@@ -258,6 +266,7 @@ button:hover {
     text-align: center;
     position: relative;
     padding-bottom: 15px;
+    contain: layout size style;
 }
 
 .result h2::after {
@@ -290,6 +299,8 @@ button:hover {
     display: inline-block;
     margin-right: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    min-width: 80px;
+    contain: layout size style;
 }
 
 .category {
@@ -298,6 +309,8 @@ button:hover {
     font-weight: 600;
     display: inline-block;
     margin-right: 10px;
+    min-width: 80px;
+    contain: layout size style;
 }
 
 .result table {
@@ -308,6 +321,8 @@ button:hover {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+    contain: layout size style;
 }
 
 .result table th {
@@ -317,6 +332,7 @@ button:hover {
     font-weight: 600;
     text-align: center;
     border: none;
+    contain: layout size style;
 }
 
 .result table td {
@@ -325,6 +341,7 @@ button:hover {
     border: 1px solid #e0e0e0;
     background: #FFFFFF;
     color: #1E191A;
+    contain: layout size style;
 }
 
 .result table tr:nth-child(even) td {
@@ -509,6 +526,8 @@ table tr:hover {
     text-align: center;
     padding: 1rem 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+    contain: layout size style;
 }
 
 .footer__content {
@@ -522,7 +541,7 @@ table tr:hover {
     font-size: 0.9rem;
     color: #333;
     font-weight: 700;
-    text-align: center;
+    contain: layout size style;
 }
 
 .footer__content a {
@@ -604,4 +623,17 @@ table tr:hover {
 .gpa-value, .category {
     color: #1E191A;
     font-weight: 600;
+    display: inline-block;
+    min-width: 80px;
+    contain: layout size style;
+}
+
+/* Optimize animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
