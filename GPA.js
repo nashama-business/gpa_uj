@@ -15,15 +15,28 @@ const gradePoints = {
 
 function initializeButtonGroups() {
   const buttonGroups = document.querySelectorAll('.button-group');
+  
+  const selectedValues = new Map();
 
   buttonGroups.forEach(group => {
     const buttons = group.querySelectorAll('.option-button');
+    const groupId = group.id;
+    
+    const savedValue = localStorage.getItem(groupId);
+    
     buttons.forEach(button => {
+      if (savedValue === button.dataset.value) {
+        button.classList.add('selected');
+      }
+      
       button.addEventListener('click', () => {
         buttons.forEach(btn => btn.classList.remove('selected'));
         button.classList.add('selected');
+        
+        selectedValues.set(groupId, button.dataset.value);
+        localStorage.setItem(groupId, button.dataset.value);
 
-        if (group.id === 'courseCount') {
+        if (groupId === 'courseCount') {
           updateCoursesUI();
         }
       });
@@ -61,12 +74,13 @@ let courses = [];
 
 function updateCoursesUI() {
   const count = parseInt(getSelectedValue('courseCount')) || 4;
-  coursesContainer.innerHTML = '';
+  const fragment = document.createDocumentFragment();
   courses = [];
 
   for (let i = 1; i <= count; i++) {
     const coursesection = document.createElement('section');
     coursesection.classList.add('course');
+    
     coursesection.innerHTML = `
       <h3>
         <span class="course-name">المادة ${i}</span>
@@ -74,28 +88,12 @@ function updateCoursesUI() {
       </h3>
       <label><i class="fas fa-font"></i> رمز المادة</label>
       <div class="button-group course-code" id="course-code-${i}">
-        <button class="option-button selected" data-value="أ">أ</button>
-        <button class="option-button" data-value="أ-">أ-</button>
-        <button class="option-button" data-value="ب+">ب+</button>
-        <button class="option-button" data-value="ب">ب</button>
-        <button class="option-button" data-value="ب-">ب-</button>
-        <button class="option-button" data-value="ج+">ج+</button>
-        <button class="option-button" data-value="ج">ج</button>
-        <button class="option-button" data-value="ج-">ج-</button>
-        <button class="option-button" data-value="د+">د+</button>
-        <button class="option-button" data-value="د">د</button>
-        <button class="option-button" data-value="د-">د-</button>
-        <button class="option-button" data-value="هـ">هـ</button>
+        ${generateGradeButtons()}
       </div>
 
       <label><i class="fas fa-clock"></i> عدد الساعات</label>
       <div class="button-group course-hours" id="course-hours-${i}">
-        <button class="option-button" data-value="1">1</button>
-        <button class="option-button" data-value="2">2</button>
-        <button class="option-button selected" data-value="3">3</button>
-        <button class="option-button" data-value="4">4</button>
-        <button class="option-button" data-value="5">5</button>
-        <button class="option-button" data-value="6">6</button>
+        ${generateHoursButtons()}
       </div>
 
       <section class="repeated-course hidden">
@@ -108,43 +106,47 @@ function updateCoursesUI() {
         <section class="old-course hidden">
           <label><i class="fas fa-tag"></i> رمز المادة القديمة:</label>
           <div class="button-group old-course-code" id="old-course-code-${i}">
-            <button class="option-button" data-value="ج+">ج+</button>
-            <button class="option-button" data-value="ج">ج</button>
-            <button class="option-button" data-value="ج-">ج-</button>
-            <button class="option-button" data-value="د+">د+</button>
-            <button class="option-button" data-value="د">د</button>
-            <button class="option-button" data-value="د-">د-</button>
-            <button class="option-button" data-value="هـ">هـ</button>
+            ${generateOldGradeButtons()}
           </div>
         </section>
       </section>
     `;
-    coursesContainer.appendChild(coursesection);
-
-    const repeatedsection = coursesection.querySelector('.repeated-course');
-    const repeatedGroup = coursesection.querySelector('.course-repeated');
-    const oldCoursesection = coursesection.querySelector('.old-course');
-
-    repeatedGroup.addEventListener('click', () => {
-      if (getSelectedValue(repeatedGroup.id) === 'yes') {
-        oldCoursesection.classList.remove('hidden');
-      } else {
-        oldCoursesection.classList.add('hidden');
-      }
-    });
-
+    
+    fragment.appendChild(coursesection);
+    
     courses.push({
       name: coursesection.querySelector('.course-name'),
       code: coursesection.querySelector('.course-code'),
       hours: coursesection.querySelector('.course-hours'),
-      repeated: repeatedGroup,
+      repeated: coursesection.querySelector('.course-repeated'),
       oldCode: coursesection.querySelector('.old-course-code')
     });
   }
 
+  coursesContainer.innerHTML = '';
+  coursesContainer.appendChild(fragment);
+  
   initializeButtonGroups();
   toggleRepeatedOptions();
   enableCourseNameEditing();
+}
+
+function generateGradeButtons() {
+  return Object.keys(gradePoints)
+    .map(grade => `<button class="option-button ${grade === 'أ' ? 'selected' : ''}" data-value="${grade}">${grade}</button>`)
+    .join('');
+}
+
+function generateHoursButtons() {
+  return [1, 2, 3, 4, 5, 6]
+    .map(hours => `<button class="option-button ${hours === 3 ? 'selected' : ''}" data-value="${hours}">${hours}</button>`)
+    .join('');
+}
+
+function generateOldGradeButtons() {
+  return ['ج+', 'ج', 'ج-', 'د+', 'د', 'د-', 'هـ']
+    .map(grade => `<button class="option-button" data-value="${grade}">${grade}</button>`)
+    .join('');
 }
 
 function toggleRepeatedOptions() {
@@ -209,58 +211,55 @@ function calculateGPA() {
   let previousGPA = parseFloat(document.getElementById('previousGPA').value) || 0;
   let previousHours = parseInt(document.getElementById('previousHours').value) || 0;
 
-  if (isFirstSemester) {
-    previousGPA = 0;
-    previousHours = 0;
-  } else {
+  if (!validateInputs(isFirstSemester, previousGPA, previousHours)) {
+    return;
+  }
+
+  const results = calculateResults(isFirstSemester, previousGPA, previousHours);
+  
+  displayResult(
+    results.newGPA,
+    results.totalHours,
+    results.newCourses,
+    results.previousGPA,
+    results.previousHours,
+    results.semesterGPA,
+    results.semesterHours,
+    results.finalStatus
+  );
+
+  saveResults(results);
+}
+
+function validateInputs(isFirstSemester, previousGPA, previousHours) {
+  if (!isFirstSemester) {
     if (isNaN(previousGPA) || previousGPA < 0.5 || previousGPA > 4 || !/^\d+(\.\d{1,2})?$/.test(previousGPA)) {
       showError('يرجى إدخال معدل تراكمي صحيح', 'previousGPA');
-      return;
+      return false;
     }
 
     if (isNaN(previousHours) || previousHours <= 0 || !Number.isInteger(previousHours)) {
       showError('يرجى إدخال عدد ساعات صحيح', 'previousHours');
-      return;
+      return false;
     }
   }
+  return true;
+}
 
+function calculateResults(isFirstSemester, previousGPA, previousHours) {
   let totalPoints = previousGPA * previousHours;
   let totalHours = previousHours;
   let semesterPoints = 0;
   let semesterHours = 0;
-
   const newCourses = [];
 
   for (const course of courses) {
-    const hours = parseInt(getSelectedValue(course.hours.id));
-    const grade = getSelectedValue(course.code.id);
-    const repeated = getSelectedValue(course.repeated.id) === 'yes';
-    const oldCode = getSelectedValue(course.oldCode.id);
-    const courseName = course.name.textContent;
+    const courseResult = calculateCourseResult(course);
+    if (!courseResult) return null;
 
-    if (isNaN(hours) || hours <= 0) {
-      showError('يرجى إدخال عدد ساعات صحيح لكل مادة', course.hours.id);
-      return;
-    }
+    const { hours, gradeValue, isRepeated, oldGradeValue } = courseResult;
 
-    const gradeValue = gradePoints[grade];
-    if (gradeValue === undefined) {
-      showError('يرجى إدخال رمز مادة صحيح', course.code.id);
-      return;
-    }
-
-    if (repeated) {
-      const oldGradeValue = gradePoints[oldCode];
-      if (oldGradeValue === undefined) {
-        showError('يرجى إدخال رمز مادة قديمة صحيح', course.oldCode.id);
-        return;
-      }
-
-      if (hours > previousHours) {
-        showError('يرجى التأكد من ساعات المادة المعادة', course.hours.id);
-        return;
-      }
-
+    if (isRepeated) {
       if (gradeValue > oldGradeValue) {
         totalPoints -= oldGradeValue * hours;
         totalPoints += gradeValue * hours;
@@ -275,17 +274,81 @@ function calculateGPA() {
     }
 
     newCourses.push({
-      name: courseName,
-      code: grade,
+      name: course.name.textContent,
+      code: getSelectedValue(course.code.id),
       hours: hours,
       gradeValue: gradeValue,
-      oldCode: repeated ? oldCode : ''
+      oldCode: isRepeated ? getSelectedValue(course.oldCode.id) : ''
     });
   }
 
   const newGPA = totalPoints / totalHours;
   const semesterGPA = semesterPoints / semesterHours;
+  const finalStatus = calculateStudentStatus(newGPA, isFirstSemester);
 
+  return {
+    newGPA,
+    totalHours,
+    newCourses,
+    previousGPA,
+    previousHours,
+    semesterGPA,
+    semesterHours,
+    finalStatus
+  };
+}
+
+function calculateCourseResult(course) {
+  const hours = parseInt(getSelectedValue(course.hours.id));
+  const grade = getSelectedValue(course.code.id);
+  const isRepeated = getSelectedValue(course.repeated.id) === 'yes';
+  const oldCode = getSelectedValue(course.oldCode.id);
+
+  if (isNaN(hours) || hours <= 0) {
+    showError('يرجى إدخال عدد ساعات صحيح لكل مادة', course.hours.id);
+    return null;
+  }
+
+  const gradeValue = gradePoints[grade];
+  if (gradeValue === undefined) {
+    showError('يرجى إدخال رمز مادة صحيح', course.code.id);
+    return null;
+  }
+
+  if (isRepeated) {
+    const oldGradeValue = gradePoints[oldCode];
+    if (oldGradeValue === undefined) {
+      showError('يرجى إدخال رمز مادة قديمة صحيح', course.oldCode.id);
+      return null;
+    }
+    return { hours, gradeValue, isRepeated, oldGradeValue };
+  }
+
+  return { hours, gradeValue, isRepeated: false };
+}
+
+function saveResults(results) {
+  localStorage.setItem('lastResults', JSON.stringify(results));
+}
+
+function loadSavedResults() {
+  const savedResults = localStorage.getItem('lastResults');
+  if (savedResults) {
+    const results = JSON.parse(savedResults);
+    displayResult(
+      results.newGPA,
+      results.totalHours,
+      results.newCourses,
+      results.previousGPA,
+      results.previousHours,
+      results.semesterGPA,
+      results.semesterHours,
+      results.finalStatus
+    );
+  }
+}
+
+function calculateStudentStatus(newGPA, isFirstSemester) {
   const studentStatus = getSelectedValue('studentStatus');
   const semesterType = getSelectedValue('semesterType');
   const isFirstMajor = getSelectedValue('isFirstMajor');
@@ -328,12 +391,7 @@ function calculateGPA() {
     }
   }
 
-  displayResult(newGPA, totalHours, newCourses, previousGPA, previousHours, semesterGPA, semesterHours, finalStatus);
-
-  setTimeout(() => {
-    document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 300);
-  resetButton.classList.remove('hidden');
+  return finalStatus;
 }
 
 function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHours, semesterGPA, semesterHours, finalStatus) {
@@ -480,6 +538,7 @@ function enableCourseNameEditing() {
 document.addEventListener('DOMContentLoaded', () => {
   initializeButtonGroups();
   updateCoursesUI();
+  loadSavedResults();
 
   calculateButton.addEventListener('click', calculateGPA);
   resetButton.addEventListener('click', resetForm);
