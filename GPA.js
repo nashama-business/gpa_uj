@@ -344,99 +344,84 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
 
   let resultHTML = `
   <h2>نتائج الحساب</h2>
-  <p><strong>المعدل التراكمي الجديد:</strong> <span class="gpa-value">${newGPA.toFixed(2)}</span></p>
-  <p><strong>التقدير:</strong> <span class="category">${gpaCategory}</span></p>
-  <p><strong>الساعات التراكمية</strong> ${totalHours}</p>
-  <p><strong>وضع الطالب</strong> <span class="category">${finalStatus}</span></p>
   <table>
-    <thead>
-      <tr>
-        <th>اسم المادة</th>
-        <th>رمز المادة</th>
-        ${hasRepeatedCourses ? '<th>رمز المادة القديمة</th>' : ''}
-        <th> الساعات</th>
-        <th>علامة المادة</th>
-      </tr>
-    </thead>
-    <tbody>
-`;
+      <thead>
+          <tr>
+              <th>المعدل التراكمي الجديد</th>
+              <th>التقدير</th>
+              <th>الساعات التراكمية</th>
+              <th>وضع الطالب</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>${newGPA.toFixed(2)}</td>
+              <td>${gpaCategory}</td>
+              <td>${totalHours}</td>
+              <td>${finalStatus}</td>
+          </tr>
+      </tbody>
+  </table>
+
+  <table>
+      <thead>
+          <tr>
+              <th>اسم المادة</th>
+              <th>رمز المادة</th>
+              ${hasRepeatedCourses ? '<th>رمز المادة القديمة</th>' : ''}
+              <th>الساعات</th>
+              <th>علامة المادة</th>
+          </tr>
+      </thead>
+      <tbody>
+  `;
 
   newCourses.forEach(course => {
     resultHTML += `
     <tr>
-      <td>${course.name}</td>
-      <td>${course.code}</td>
-      ${hasRepeatedCourses ? `<td>${course.oldCode || '-'}</td>` : ''}
-      <td>${course.hours}</td>
-      <td>${course.gradeValue.toFixed(2)}</td>
+        <td>${course.name}</td>
+        <td>${course.code}</td>
+        ${hasRepeatedCourses ? `<td>${course.oldCode || '-'}</td>` : ''}
+        <td>${course.hours}</td>
+        <td>${course.gradeValue.toFixed(2)}</td>
     </tr>
-    
-  `;
+    `;
   });
 
   resultHTML += `
-    </tbody>
+      </tbody>
   </table>
-`;
+  `;
 
   if (!isFirstSemester) {
     resultHTML += `
     <table>
-      <thead>
-        <tr>
-          <th>المعدل التراكمي القديم</th>
-          <th> الساعات التراكمية القديمة</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>${previousGPA.toFixed(2)}</td>
-          <td>${previousHours}</td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>المعدل التراكمي القديم</th>
+                <th>الساعات التراكمية القديمة</th>
+                <th>المعدل الفصلي</th>
+                <th>الساعات الفصلية</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${previousGPA.toFixed(2)}</td>
+                <td>${previousHours}</td>
+                <td>${semesterGPA.toFixed(2)}</td>
+                <td>${semesterHours}</td>
+            </tr>
+        </tbody>
     </table>
-  `;
+    `;
   }
-
-  if (!isFirstSemester) {
-    resultHTML += `
-    <table>
-      <thead>
-        <tr>
-          <th>المعدل الفصلي</th>
-          <th> الساعات الفصلية</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>${semesterGPA.toFixed(2)}</td>
-          <td>${semesterHours}</td>
-        </tr>
-      </tbody>
-    </table>
-  `;
-  }
-
-  function adjustForScreenSize() {
-    const screenWidth = window.innerWidth;
-    const resultSection = document.getElementById('resultSection');
-
-    if (resultSection) {
-      if (screenWidth < 600) {
-        resultSection.style.fontSize = '8px';
-      } else if (screenWidth < 900) {
-        resultSection.style.fontSize = '10px';
-      } else {
-        resultSection.style.fontSize = '12px';
-      }
-    }
-  }
-
-  window.addEventListener('load', adjustForScreenSize);
-  window.addEventListener('resize', adjustForScreenSize);
 
   resultSection.innerHTML = resultHTML;
   resultSection.classList.remove('hidden');
+
+  setTimeout(() => {
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
 }
 
 function getGPACategory(gpa) {

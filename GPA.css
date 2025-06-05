@@ -78,7 +78,7 @@ body {
 
 .container {
     max-width: var(--container-width);
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
     padding: 20px;
     text-align: center;
@@ -127,10 +127,10 @@ label i {
     min-width: 60px;
     max-width: 120px;
     padding: 8px 12px;
-    border: 2px solid #bdc3c7;
+    border: 2px solid #007B3A;
     border-radius: var(--border-radius);
     background: #FFFFFF;
-    color: #1E191A;
+    color: #007B3A;
     cursor: pointer;
     transition: all 0.3s ease;
     flex: 1;
@@ -142,6 +142,7 @@ label i {
 .option-button:hover {
     background: #ED2B2B;
     border-color: #ED2B2B;
+    color: #FFFFFF;
     transform: translateY(-1px);
 }
 
@@ -325,62 +326,8 @@ button:hover {
 
 .result table tr:hover td {
     background: #f0f0f0;
-}
-
-@media (max-width: 768px) {
-    .result {
-        padding: 15px;
-        margin: 20px 0 60px;
-    }
-
-    .result h2 {
-        font-size: 20px;
-        margin-bottom: 20px;
-        min-height: 35px;
-    }
-
-    .gpa-value {
-        font-size: 24px;
-        min-width: 60px;
-    }
-
-    .category {
-        font-size: 18px;
-        min-width: 60px;
-    }
-
-    .result table th,
-    .result table td {
-        padding: 8px 10px;
-        min-height: 35px;
-        font-size: 14px;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.result table {
-    animation: slideIn 0.5s ease-out;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .result table td:last-child {
@@ -388,101 +335,37 @@ button:hover {
     color: #007B3A;
 }
 
-.result table tr {
-    transition: all 0.3s ease;
-}
-
-.result table tr:hover {
-    transform: scale(1.01);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-table th,
-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-
-table th {
-    background: #007B3A;
-    color: #FFFFFF;
-}
-
-table tr:nth-child(even) {
-    background: #F9F9F9;
-}
-
-table tr:hover {
-    background: #EAEAEA;
-}
-
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
+@media (max-width: 1024px) {
+    :root {
+        --container-width: 90%;
+        --button-height: 40px;
+        --input-height: 40px;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    h1 {
+        font-size: 1.8rem;
     }
-}
 
-.bottom-bar {
-    backdrop-filter: blur(10px);
-    bottom: 0;
-    left: 0;
-}
-
-.bottom-bar__content {
-    min-height: 60px;
-    max-width: 1200px;
-    padding: 0 30px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row-reverse;
+    .result h2 {
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 768px) {
-    .btn {
-        font-size: 12px;
-        padding: 8px 20px;
-        border-radius: 8px;
-        background: #007B3A;
-        border: 1px solid #D02024;
-        transition: all 0.2s ease-in-out;
+    :root {
+        --button-height: 35px;
+        --input-height: 35px;
+        --spacing-unit: 6px;
     }
 
-    .btn:hover {
-        background: rgba(0, 0, 0, 0.2);
+    .container {
+        width: 95%;
+        padding: 15px;
     }
 
-    
-
-    .line {
-        fill: none;
-        stroke: rgb(197, 15, 15);
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 3;
-        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    h1 {
+        font-size: 1.6rem;
     }
-
-    .line-top-bottom {
-        stroke-dasharray: 12 63;
-    }
-
 
     .button-group {
         gap: 5px;
@@ -494,25 +377,44 @@ table tr:hover {
         padding: 6px 10px;
     }
 
-    .course-code .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    input {
+        font-size: 13px;
+        padding: 10px 30px;
     }
 
-    .course-code .option-button {
-        min-width: 40px;
+    .result {
+        padding: 15px;
+        margin: 20px 0 60px;
+    }
+
+    .result h2 {
+        font-size: 20px;
+    }
+
+    .result table th,
+    .result table td {
+        padding: 8px 10px;
+        min-height: 35px;
         font-size: 14px;
-    }
-
-    .course-hours .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
-    }
-
-    .course-hours .option-button {
-        min-width: 35px;
     }
 }
 
 @media (max-width: 480px) {
+    :root {
+        --button-height: 30px;
+        --input-height: 30px;
+        --spacing-unit: 4px;
+    }
+
+    .container {
+        width: 98%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
     .button-group {
         gap: 4px;
     }
@@ -523,21 +425,25 @@ table tr:hover {
         padding: 5px 8px;
     }
 
-    .course-code .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    input {
+        font-size: 12px;
+        padding: 8px 25px;
     }
 
-    .course-code .option-button {
-        min-width: 35px;
-        font-size: 13px;
+    .result {
+        padding: 10px;
+        margin: 15px 0 40px;
     }
 
-    .course-hours .button-group {
-        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    .result h2 {
+        font-size: 18px;
     }
 
-    .course-hours .option-button {
-        min-width: 30px;
+    .result table th,
+    .result table td {
+        padding: 6px 8px;
+        min-height: 30px;
+        font-size: 12px;
     }
 }
 
@@ -649,18 +555,16 @@ table tr:hover {
     --border-radius: 6px;
 }
 
-/* Critical CSS for FCP */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #ffffff;
-    color: #1E191A;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+/* Container responsiveness */
+.container {
+    max-width: var(--container-width);
+    width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
 }
 
-/* Button group stability */
+/* Button group responsiveness */
 .button-group {
     display: flex;
     flex-wrap: wrap;
@@ -671,16 +575,16 @@ body {
     align-items: center;
 }
 
-/* Option button stability */
+/* Option button responsiveness */
 .option-button {
     height: var(--button-height);
     min-width: 60px;
     max-width: 120px;
     padding: 8px 12px;
-    border: 2px solid #bdc3c7;
+    border: 2px solid #007B3A;
     border-radius: var(--border-radius);
     background: #FFFFFF;
-    color: #1E191A;
+    color: #007B3A;
     cursor: pointer;
     transition: all 0.3s ease;
     flex: 1;
@@ -689,7 +593,7 @@ body {
     text-align: center;
 }
 
-/* Input stability */
+/* Input responsiveness */
 input {
     width: 100%;
     height: var(--input-height);
@@ -702,37 +606,7 @@ input {
     box-sizing: border-box;
 }
 
-/* Label stability */
-label {
-    display: block;
-    margin-top: 15px;
-    min-height: 24px;
-    font-size: 16px;
-    position: relative;
-    text-align: center;
-}
-
-/* Result section stability */
-.result {
-    margin: 30px 0 100px;
-    padding: 25px;
-    min-height: 200px;
-    border-radius: 15px;
-    background: #f8f9fa;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.result h2 {
-    font-size: 24px;
-    margin-bottom: 25px;
-    min-height: 40px;
-    position: relative;
-    padding-bottom: 15px;
-    text-align: center;
-}
-
-/* Table stability */
+/* Table responsiveness */
 .result table {
     width: 100%;
     margin: 20px 0;
@@ -746,28 +620,42 @@ label {
     padding: 12px 15px;
     min-height: 45px;
     text-align: center;
-}
-
-/* Hidden elements stability */
-.hidden {
-    display: none !important;
-    height: 0;
+    white-space: nowrap;
     overflow: hidden;
-    margin: 0;
-    padding: 0;
+    text-overflow: ellipsis;
 }
 
-/* Responsive stability */
-@media (max-width: 768px) {
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
     :root {
+        --container-width: 90%;
         --button-height: 40px;
         --input-height: 40px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .result h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --button-height: 35px;
+        --input-height: 35px;
         --spacing-unit: 6px;
     }
 
     .container {
         width: 95%;
         padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
     }
 
     .button-group {
@@ -780,6 +668,11 @@ label {
         padding: 6px 10px;
     }
 
+    input {
+        font-size: 13px;
+        padding: 10px 30px;
+    }
+
     .result {
         padding: 15px;
         margin: 20px 0 60px;
@@ -787,7 +680,6 @@ label {
 
     .result h2 {
         font-size: 20px;
-        min-height: 35px;
     }
 
     .result table th,
@@ -800,15 +692,42 @@ label {
 
 @media (max-width: 480px) {
     :root {
-        --button-height: 35px;
-        --input-height: 35px;
+        --button-height: 30px;
+        --input-height: 30px;
         --spacing-unit: 4px;
+    }
+
+    .container {
+        width: 98%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .button-group {
+        gap: 4px;
     }
 
     .option-button {
         min-width: 45px;
         font-size: 11px;
         padding: 5px 8px;
+    }
+
+    input {
+        font-size: 12px;
+        padding: 8px 25px;
+    }
+
+    .result {
+        padding: 10px;
+        margin: 15px 0 40px;
+    }
+
+    .result h2 {
+        font-size: 18px;
     }
 
     .result table th,
@@ -819,40 +738,13 @@ label {
     }
 }
 
-/* Student status buttons */
-#studentStatus .button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-unit);
-    margin: var(--spacing-unit) 0 15px;
-    min-height: var(--button-height);
-    justify-content: center;
-    align-items: center;
-}
-
+/* Student status buttons responsiveness */
 #studentStatus .option-button {
-    height: var(--button-height);
     min-width: 120px;
     max-width: 200px;
-    padding: 8px 12px;
-    border: 2px solid #bdc3c7;
-    border-radius: var(--border-radius);
-    background: #FFFFFF;
-    color: #1E191A;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    white-space: nowrap;
 }
 
 @media (max-width: 768px) {
-    #studentStatus .button-group {
-        gap: 4px;
-    }
-
     #studentStatus .option-button {
         min-width: 110px;
         font-size: 11px;
@@ -862,14 +754,57 @@ label {
 }
 
 @media (max-width: 480px) {
-    #studentStatus .button-group {
-        gap: 3px;
-    }
-
     #studentStatus .option-button {
         min-width: 95px;
         font-size: 10px;
         padding: 4px 6px;
         height: 30px;
     }
+}
+
+/* Course code and hours buttons responsiveness */
+.course-code .button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 5px;
+}
+
+.course-hours .button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    gap: 5px;
+}
+
+@media (max-width: 768px) {
+    .course-code .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    }
+
+    .course-hours .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .course-code .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    }
+
+    .course-hours .button-group {
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+    }
+}
+
+#previousGPA,
+#previousHours {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+#previousGPA::-webkit-outer-spin-button,
+#previousGPA::-webkit-inner-spin-button,
+#previousHours::-webkit-outer-spin-button,
+#previousHours::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
