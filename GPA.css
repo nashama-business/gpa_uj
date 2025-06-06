@@ -81,6 +81,9 @@ body {
     text-align: center;
     margin: 20px auto;
     padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -117,6 +120,7 @@ label i {
     gap: 8px;
     margin-top: 8px;
     margin-bottom: 15px;
+    min-height: 45px;
 }
 
 .option-button {
@@ -129,6 +133,7 @@ label i {
     transition: all 0.3s ease;
     flex: 1;
     min-width: 60px;
+    min-height: 40px;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
@@ -157,6 +162,7 @@ input {
     transition: border-color 0.3s ease;
     background: #FFFFFF;
     color: #1E191A;
+    min-height: 45px;
 }
 
 input:focus {
@@ -227,6 +233,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
+    min-height: 45px;
 }
 
 button:hover {
@@ -243,6 +250,7 @@ button:hover {
     background: #f8f9fa;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
 }
 
 .result h2 {
@@ -302,6 +310,7 @@ button:hover {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
 }
 
 .result table th {
@@ -311,6 +320,7 @@ button:hover {
     font-weight: 600;
     text-align: center;
     border: none;
+    min-width: 120px;
 }
 
 .result table td {
@@ -320,6 +330,7 @@ button:hover {
     background: #FFFFFF;
     color: #007B3A;
     font-weight: 500;
+    min-width: 120px;
 }
 
 .result table tr:nth-child(even) td {
@@ -559,4 +570,13 @@ table tr:hover {
     border-top-color: rgba(0, 0, 0, 0.8);
     margin-bottom: -6px;
     z-index: 1000;
+}
+
+#coursesContainer {
+    min-height: 300px;
+}
+
+.course {
+    margin-bottom: 30px;
+    min-height: 150px;
 }
