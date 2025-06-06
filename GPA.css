@@ -1,3 +1,6 @@
+/* -------------------------------------
+1. إعادة تعيين الأنماط الافتراضية | RESET
+------------------------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -5,10 +8,9 @@
     text-decoration: none;
     list-style: none;
     caret-color: transparent;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
+/* تنسيق رسائل الخطأ */
 .error-message {
     position: fixed;
     top: 20px;
@@ -36,7 +38,6 @@
         transform: translateX(100%);
         opacity: 0;
     }
-
     to {
         transform: translateX(0);
         opacity: 1;
@@ -47,16 +48,21 @@
     from {
         opacity: 1;
     }
-
     to {
         opacity: 0;
     }
 }
 
+/* -------------------------------------
+2. الأدوات المساعدة | UTILITIES
+------------------------------------- */
 .hidden {
     display: none;
 }
 
+/* -------------------------------------
+3. الأنماط الأساسية | BASE
+------------------------------------- */
 body {
     font-family: 'Poppins', sans-serif;
     background: #ffffff;
@@ -66,7 +72,6 @@ body {
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    text-rendering: optimizeLegibility;
 }
 
 .wrapper {
@@ -84,10 +89,11 @@ body {
     text-align: center;
     margin: 20px auto;
     padding: 20px;
-    contain: layout size;
-    content-visibility: auto;
 }
 
+/* -------------------------------------
+4. تنسيق النصوص | TYPOGRAPHY
+------------------------------------- */
 h1 {
     font-size: 2rem;
     color: #007B3A;
@@ -100,6 +106,9 @@ p {
     color: #241e1e;
 }
 
+/* -------------------------------------
+5. عناصر النموذج | FORM ELEMENTS
+------------------------------------- */
 label {
     display: block;
     margin-top: 15px;
@@ -122,7 +131,6 @@ label i {
     gap: 8px;
     margin-top: 8px;
     margin-bottom: 15px;
-    contain: layout size;
 }
 
 .option-button {
@@ -138,8 +146,6 @@ label i {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    contain: layout size;
-    will-change: transform;
 }
 
 .option-button:hover {
@@ -165,7 +171,6 @@ input {
     transition: border-color 0.3s ease;
     background: #FFFFFF;
     color: #1E191A;
-    contain: layout size;
 }
 
 input:focus {
@@ -173,6 +178,7 @@ input:focus {
     outline: none;
 }
 
+/* تنسيق رسائل الخطأ داخل الحقول */
 .input-error {
     border-color: #dc3545 !important;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
@@ -198,33 +204,25 @@ input:focus {
 }
 
 @keyframes shake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-5px);
-    }
-
-    75% {
-        transform: translateX(5px);
-    }
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 @keyframes fadeIn {
-    from {
+    from { 
         opacity: 0;
         transform: translateY(-10px);
     }
-
-    to {
+    to { 
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+/* -------------------------------------
+6. الأزرار | BUTTONS
+------------------------------------- */
 button {
     width: 100%;
     margin-top: 20px;
@@ -236,8 +234,6 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
-    contain: layout size;
-    will-change: transform;
 }
 
 button:hover {
@@ -245,6 +241,9 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* -------------------------------------
+7. نتيجة المعدل التراكمي | GPA RESULT
+------------------------------------- */
 .result {
     margin-top: 30px;
     margin-bottom: 100px;
@@ -254,8 +253,6 @@ button:hover {
     background: #f8f9fa;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    contain: layout size;
-    content-visibility: auto;
 }
 
 .result h2 {
@@ -293,7 +290,7 @@ button:hover {
 .gpa-value {
     font-size: 28px;
     font-weight: 700;
-    color: #1E191A;
+    color: #EE161F;
     display: inline-block;
     margin-right: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -301,12 +298,13 @@ button:hover {
 
 .category {
     font-size: 20px;
-    color: #1E191A;
+    color: #EE161F;
     font-weight: 600;
     display: inline-block;
     margin-right: 10px;
 }
 
+/* تحسين شكل الجداول في قسم النتائج | Improve table appearance in results section */
 .result table {
     width: 100%;
     border-collapse: separate;
@@ -315,7 +313,6 @@ button:hover {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    contain: layout size;
 }
 
 .result table th {
@@ -332,8 +329,6 @@ button:hover {
     text-align: center;
     border: 1px solid #e0e0e0;
     background: #FFFFFF;
-    color: #1E191A;
-    contain: layout size;
 }
 
 .result table tr:nth-child(even) td {
@@ -344,308 +339,358 @@ button:hover {
     background: #f0f0f0;
 }
 
+/* تحسين التجاوب مع الشاشات الصغيرة | Improve responsiveness for small screens */
 @media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 15px;
-        margin: 10px auto;
-        contain: layout size;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-
-    .button-group {
-        gap: 5px;
-        contain: layout size;
-    }
-
-    .option-button {
-        padding: 6px 10px;
-        font-size: 12px;
-        min-width: 45px;
-        contain: layout size;
-    }
-
-    input {
-        padding: 10px 30px;
-        font-size: 13px;
-    }
-
-    button {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-
     .result {
         padding: 15px;
-        margin-top: 15px;
-        margin-bottom: 50px;
-        contain: layout size;
+        margin-top: 20px;
+        margin-bottom: 60px;
     }
 
     .result h2 {
-        font-size: 18px;
-        margin-bottom: 15px;
+        font-size: 20px;
+        margin-bottom: 20px;
     }
 
     .gpa-value {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .category {
-        font-size: 16px;
-    }
-
-    .result table {
-        font-size: 12px;
-        contain: layout size;
+        font-size: 18px;
     }
 
     .result table th,
     .result table td {
         padding: 8px 10px;
-        contain: layout size;
-    }
-
-    .footer__content p {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        width: 100%;
-        padding: 10px;
-        margin: 5px auto;
-    }
-
-    h1 {
-        font-size: 1.2rem;
-    }
-
-    .button-group {
-        gap: 3px;
-    }
-
-    .option-button {
-        padding: 5px 8px;
-        font-size: 11px;
-        min-width: 40px;
-    }
-
-    input {
-        padding: 8px 25px;
-        font-size: 12px;
-    }
-
-    button {
-        padding: 8px 12px;
-        font-size: 13px;
-    }
-
-    .result {
-        padding: 10px;
-    }
-
-    .result h2 {
-        font-size: 16px;
-    }
-
-    .gpa-value {
-        font-size: 18px;
-    }
-
-    .category {
         font-size: 14px;
     }
+}
 
-    .result table {
-        font-size: 11px;
+/* تحسين تأثيرات الحركة | Improve animation effects */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
     }
-
-    .result table th,
-    .result table td {
-        padding: 6px 8px;
-    }
-
-    .footer__content p {
-        font-size: 0.7rem;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media (max-width: 320px) {
-    .container {
-        padding: 5px;
-    }
+/* إضافة تأثيرات حركية للجداول | Add animation effects to tables */
+.result table {
+    animation: slideIn 0.5s ease-out;
+}
 
-    h1 {
-        font-size: 1rem;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
     }
-
-    .button-group {
-        gap: 2px;
-    }
-
-    .option-button {
-        padding: 4px 6px;
-        font-size: 10px;
-        min-width: 35px;
-    }
-
-    input {
-        padding: 6px 20px;
-        font-size: 11px;
-    }
-
-    button {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
-
-    .result {
-        padding: 8px;
-    }
-
-    .result h2 {
-        font-size: 14px;
-    }
-
-    .gpa-value {
-        font-size: 16px;
-    }
-
-    .category {
-        font-size: 12px;
-    }
-
-    .result table {
-        font-size: 10px;
-    }
-
-    .result table th,
-    .result table td {
-        padding: 4px 6px;
-    }
-
-    .footer__content p {
-        font-size: 0.6rem;
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-/* تحسينات إضافية للشاشات الكبيرة */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1000px;
-        contain: layout size;
+/* تحسين مظهر الأرقام في الجداول | Improve number appearance in tables */
+.result table td:last-child {
+    font-weight: 600;
+    color: #007B3A;
+}
+
+/* إضافة تأثيرات حركية عند التحويم على الصفوف | Add hover animation effects to rows */
+.result table tr {
+    transition: all 0.3s ease;
+}
+
+.result table tr:hover {
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------
+8. الجداول | TABLES
+------------------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background: #007B3A;
+    color: #FFFFFF;
+}
+
+table tr:nth-child(even) {
+    background: #F9F9F9;
+}
+
+table tr:hover {
+    background: #EAEAEA;
+}
+
+
+/* -------------------------------------
+9. تأثيرات الحركة | KEYFRAMES
+------------------------------------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .button-group {
-        gap: 12px;
-        contain: layout size;
-    }
-
-    .option-button {
-        padding: 12px 20px;
-        font-size: 16px;
-        min-width: 70px;
-    }
-
-    input {
-        padding: 15px 40px;
-        font-size: 16px;
-    }
-
-    button {
-        padding: 15px 25px;
-        font-size: 18px;
-    }
-
-    .result {
-        padding: 30px;
-        contain: layout size;
-    }
-
-    .result h2 {
-        font-size: 28px;
-    }
-
-    .gpa-value {
-        font-size: 32px;
-    }
-
-    .category {
-        font-size: 24px;
-    }
-
-    .result table {
-        font-size: 16px;
-        contain: layout size;
-    }
-
-    .result table th,
-    .result table td {
-        padding: 15px 20px;
-        contain: layout size;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* تحسينات للشاشات المتوسطة */
-@media (min-width: 769px) and (max-width: 1199px) {
-    .container {
-        max-width: 900px;
-        contain: layout size;
-    }
-
-    .button-group {
-        gap: 8px;
-        contain: layout size;
-    }
-
-    .option-button {
-        padding: 8px 15px;
-        font-size: 14px;
-        min-width: 55px;
-    }
-
-    input {
-        padding: 12px 35px;
-        font-size: 14px;
-    }
-
-    button {
-        padding: 12px 20px;
-        font-size: 16px;
-    }
+/* -------------------------------------
+10. شعار النشامة | NASHAMA LOGO
+------------------------------------- */
+.nashama img {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 165px;
+    height: auto;
 }
 
+/* -------------------------------------
+11. الهيدر الرئيسي | HEADER
+------------------------------------- */
+.header {
+    /* تثبيت الهيدر في أعلى الصفحة | Fix header at top of page */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* خلفية شفافة مع تأثير زجاجي | Transparent background with glass effect */
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    /* ضمان ظهور الهيدر فوق جميع العناصر | Ensure header appears above all elements */
+    z-index: 1000;
+}
+
+/* -------------------------------------
+12. الشريط السفلي للهيدر | BOTTOM BAR
+------------------------------------- */
 .bottom-bar {
+    /* إضافة تأثير زجاجي للخلفية | Add glass effect to background */
     backdrop-filter: blur(10px);
     bottom: 0;
     left: 0;
 }
 
+/* تنسيق محتوى الشريط السفلي | Style bottom bar content */
 .bottom-bar__content {
+    /* تحديد الارتفاع الأدنى والحد الأقصى للعرض | Define minimum and maximum width for content */
     min-height: 60px;
     max-width: 1200px;
     padding: 0 30px;
     margin: 0 auto;
+    /* تنسيق العناصر داخله | Style content inside bar */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* عكس اتجاه العناصر للغة العربية | Reverse direction for Arabic language */
     flex-direction: row-reverse;
 }
 
+/* -------------------------------------
+13. الشعار | LOGO
+------------------------------------- */
+.logo {
+    /* تنسيق الشعار وموقعه | Style logo and its position */
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* حجم صورة الشعار | Logo image size */
 .logo__img {
     height: 50px;
 }
 
+/* -------------------------------------
+14. القائمة الرئيسية | NAVIGATION
+------------------------------------- */
+.nav {
+    /* إضافة تأثير انتقالي للقائمة | Add transition effect to menu */
+    transition: all 0.3s ease-in-out;
+}
+
+/* تنسيق قائمة الروابط | Style navigation links */
+.nav__list {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    column-gap: 40px;
+}
+
+/* تنسيق روابط القائمة | Style menu links */
+.nav__link {
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+/* حالة القائمة عند فتحها في الشاشات الصغيرة | Menu state when opened on small screens */
+.nav--open {
+    left: 50% !important;
+}
+
+/* -------------------------------------
+15. قائمة الهاتف المحمول | HAMBURGER MENU
+------------------------------------- */
+.hamburger {
+    cursor: pointer;
+    display: none;
+}
+
+/* تنسيق أشرطة قائمة الهاتف | Style mobile menu bars */
+.bar {
+    height: 2px;
+    width: 27px;
+    margin: 5px 0;
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+}
+
+/* تأثيرات فتح وإغلاق قائمة الهاتف | Open/close menu effects */
+.hamburger--open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger--open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger--open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* -------------------------------------
+16. التجاوب مع الشاشات الصغيرة | MEDIA QUERIES
+------------------------------------- */
+@media (max-width: 768px) {
+    .nav {
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 400px;
+        padding: 15px 20px;
+        text-align: center;
+        background: rgba(179, 179, 179, 0.8);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border-radius: 15px;
+        border: 1px solid rgba(245, 12, 12, 0.99);
+        box-shadow: 0 8px 16px rgba(255, 0, 0, 0.404);
+        transition: left 0.4s ease-in-out, opacity 0.3s ease-in-out;
+
+    }
+
+    .nav__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        padding: 10px 0;
+    }
+
+    .nav__link {
+        font-size: 15px;
+        font-weight: bold;
+        color: #007B3A;
+        text-transform: uppercase;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .nav__link:hover {
+        color: #007B3A;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px 20px;
+        border-radius: 8px;
+        background: #007B3A;
+        border: 1px solid #D02024;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger input {
+        display: none;
+    }
+
+    .hamburger svg {
+        height: 3em;
+        transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line {
+        fill: none;
+        stroke: rgb(197, 15, 15);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3;
+        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line-top-bottom {
+        stroke-dasharray: 12 63;
+    }
+
+    .hamburger input:checked+svg {
+        transform: rotate(-45deg);
+    }
+
+    .hamburger input:checked+svg .line-top-bottom {
+        stroke-dasharray: 20 300;
+        stroke-dashoffset: -32.42;
+    }
+
+    .button-group {
+        gap: 5px;
+    }
+
+    .option-button {
+        padding: 6px 10px;
+        font-size: 12px;
+        min-width: 50px;
+    }
+}
+
+/* -------------------------------------
+17. التذييل | FOOTER
+------------------------------------- */
 .footer {
     background: rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -671,6 +716,40 @@ button:hover {
     text-decoration: none;
 }
 
+.star-trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 3px rgba(208, 32, 36, 0.6));
+    transition: all 0.1s ease-out;
+}
+
+.star-trail path {
+    fill: white;
+    stroke: #D02024;
+    stroke-width: 1;
+}
+
+@keyframes sparkleFade {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.4) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+.resultSection {
+    margin-top: 50px;
+}
+
+/* تحسين مظهر الأزرار في قسم المواد | Improve button appearance in course section */
 .course .button-group {
     margin-bottom: 20px;
 }
@@ -680,6 +759,7 @@ button:hover {
     padding: 6px 8px;
 }
 
+/* تحسين مظهر أزرار رمز المادة | Improve course code button appearance */
 .course-code .option-button {
     font-size: 16px;
     font-weight: bold;
@@ -687,6 +767,72 @@ button:hover {
     padding: 6px 4px;
 }
 
+/* -------------------------------------
+18. زر حفظ PDF | PDF Button
+------------------------------------- */
+.pdf-button-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#saveAsPdf {
+    background: #D02024;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#saveAsPdf:hover {
+    background: #ED2B2B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(237, 43, 43, 0.2);
+}
+
+#saveAsPdf i {
+    font-size: 18px;
+}
+
+/* تنسيق PDF | PDF Styling */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    .result, .result * {
+        visibility: visible;
+    }
+    
+    .result {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
+
+/* تنسيق زر الرئيسية في القائمة */
+.nav__link.btn {
+    background: none;
+    color: #1E191A;
+    padding: 8px 15px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.nav__link.btn:hover {
+    background: rgba(237, 43, 43, 0.1);
+    color: #ED2B2B;
+    transform: none;
+}
+
+/* تنسيق اسم المادة والتلميح */
 .course-name {
     position: relative;
     cursor: pointer;
@@ -718,34 +864,4 @@ button:hover {
     border-top-color: rgba(0, 0, 0, 0.8);
     margin-bottom: -6px;
     z-index: 1000;
-}
-
-/* تحسينات إضافية للأداء */
-@layer base {
-    .container, .button-group, .result, .result table {
-        contain: layout size;
-    }
-}
-
-/* تحسينات للتحميل السريع */
-.result {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 500px;
-}
-
-/* تحسينات للتحميل التدريجي */
-.result table {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in-out forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

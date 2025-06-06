@@ -11,8 +11,20 @@
     content="الجامعة الأردنية, حساب المعدل, GPA Calculator, University of Jordan GPA, University of Jordan GPA tool, معدل الجامعة الأردنية, حاسبة العلامات, GPA Jordan, حساب GPA الجامعة الأردنية, حاسبة المعدل التراكمي, Grade Calculator Jordan" />
   <meta name="description"
     content="احسب معدلك في الجامعة الأردنية بي سهولة  GPA الذكية! سهلة، سريعة، ومخصصة لطلبة الجامعة الأردنية." />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Preconnect to required origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load fonts with display swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="GPA.css">
+  <!-- Fallback for font loading -->
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  </noscript>
 </head>
 
 <body>
@@ -21,17 +33,6 @@
     <div class="button-group" id="isFirstSemester">
       <button class="option-button selected" data-value="yes">نعم</button>
       <button class="option-button" data-value="no">لا</button>
-    </div>
-
-    <label><i class="fas fa-book"></i>عدد المواد</label>
-    <div class="button-group" id="courseCount">
-      <button class="option-button" data-value="1">1</button>
-      <button class="option-button" data-value="2">2</button>
-      <button class="option-button" data-value="3">3</button>
-      <button class="option-button selected" data-value="4">4</button>
-      <button class="option-button" data-value="5">5</button>
-      <button class="option-button" data-value="6">6</button>
-      <button class="option-button" data-value="7">7</button>
     </div>
 
     <div id="studentStatusSection" class="hidden">
@@ -63,6 +64,17 @@
       <input type="number" id="previousGPA" step="0.01" min="0.50" max="4.00" placeholder="يرجى أدخل المعدل التراكمي">
       <label for="previousHours"><i class="fas fa-clock"></i>الساعات التراكمية</label>
       <input type="number" id="previousHours" step="1" min="1" placeholder="يرجى أدخل عدد الساعات التراكمي">
+    </div>
+
+    <label><i class="fas fa-book"></i>عدد المواد</label>
+    <div class="button-group" id="courseCount">
+      <button class="option-button" data-value="1">1</button>
+      <button class="option-button" data-value="2">2</button>
+      <button class="option-button" data-value="3">3</button>
+      <button class="option-button selected" data-value="4">4</button>
+      <button class="option-button" data-value="5">5</button>
+      <button class="option-button" data-value="6">6</button>
+      <button class="option-button" data-value="7">7</button>
     </div>
 
     <section id="coursesContainer"></section>
