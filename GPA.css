@@ -354,17 +354,32 @@ button:hover {
     }
 
     .gpa-value {
-        font-size: 24px;
+        font-size: 10px;
     }
 
     .category {
-        font-size: 18px;
+        font-size: 10px;
     }
 
     .result table th,
     .result table td {
         padding: 8px 10px;
         font-size: 10px;
+    }
+
+    .result table {
+        font-size: 10px;
+    }
+
+    .result table th:nth-child(2),
+    .result table td:nth-child(2) {
+        font-size: 14px !important;
+    }
+
+    .grade-symbol {
+        font-size: 18px !important;
+        font-weight: bold;
+        color: #007B3A;
     }
 }
 
@@ -579,4 +594,10 @@ table tr:hover {
 .course {
     margin-bottom: 30px;
     min-height: 150px;
+}
+
+.grade-symbol {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #007B3A;
 }

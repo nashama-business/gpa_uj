@@ -356,7 +356,7 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
       <tr>
         <th>المعدل التراكمي الجديد</th>
         <th>التقدير</th>
-        <th>الساعات التراكمية</th>
+        <th>الساعات التراكمية الجديدة </th>
         <th>وضع الطالب</th>
       </tr>
     </thead>
@@ -387,8 +387,8 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
     resultHTML += `
     <tr>
       <td>${course.name}</td>
-      <td>${course.code}</td>
-      ${hasRepeatedCourses ? `<td>${course.oldCode || '-'}</td>` : ''}
+      <td><span class="grade-symbol">${course.code}</span></td>
+      ${hasRepeatedCourses ? `<td><span class=\"grade-symbol\">${course.oldCode || '-'}</span></td>` : ''}
       <td>${course.hours}</td>
       <td>${course.gradeValue.toFixed(2)}</td>
     </tr>
