@@ -13,6 +13,8 @@ const gradePoints = {
   'هـ': 0.50
 };
 
+let courseChangeCounter = 0;
+
 function initializeButtonGroups() {
   const buttonGroups = document.querySelectorAll('.button-group');
 
@@ -24,6 +26,11 @@ function initializeButtonGroups() {
         button.classList.add('selected');
 
         if (group.id === 'courseCount') {
+          courseChangeCounter++;
+          if (courseChangeCounter >= 4) {
+            courseChangeCounter = 0;
+            location.reload();
+          }
           updateCoursesUI();
         }
       });
@@ -171,18 +178,18 @@ function showError(message, elementId = null) {
     const element = document.getElementById(elementId);
     if (element) {
       element.classList.add('input-error');
-      
+
       const errorDiv = document.createElement('div');
       errorDiv.className = 'error-message-inline';
       errorDiv.innerHTML = `
         <i class="fas fa-exclamation-circle"></i>
         <span>${message}</span>
       `;
-      
+
       element.parentNode.insertBefore(errorDiv, element.nextSibling);
-      
+
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
+
       setTimeout(() => {
         errorDiv.remove();
         element.classList.remove('input-error');
@@ -195,9 +202,9 @@ function showError(message, elementId = null) {
       <i class="fas fa-exclamation-circle"></i>
       <span>${message}</span>
     `;
-    
+
     document.body.appendChild(errorDiv);
-    
+
     setTimeout(() => {
       errorDiv.remove();
     }, 3000);
@@ -344,17 +351,32 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
 
   let resultHTML = `
   <h2>نتائج الحساب</h2>
-  <p><strong>المعدل التراكمي الجديد:</strong> <span class="gpa-value">${newGPA.toFixed(2)}</span></p>
-  <p><strong>التقدير:</strong> <span class="category">${gpaCategory}</span></p>
-  <p><strong>الساعات التراكمية</strong> ${totalHours}</p>
-  <p><strong>وضع الطالب</strong> <span class="category">${finalStatus}</span></p>
+  <table>
+    <thead>
+      <tr>
+        <th>المعدل التراكمي الجديد</th>
+        <th>التقدير</th>
+        <th>الساعات التراكمية</th>
+        <th>وضع الطالب</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="gpa-value">${newGPA.toFixed(2)}</span></td>
+        <td><span class="category">${gpaCategory}</span></td>
+        <td>${totalHours}</td>
+        <td><span class="category">${finalStatus}</span></td>
+      </tr>
+    </tbody>
+  </table>
+
   <table>
     <thead>
       <tr>
         <th>اسم المادة</th>
         <th>رمز المادة</th>
         ${hasRepeatedCourses ? '<th>رمز المادة القديمة</th>' : ''}
-        <th> الساعات</th>
+        <th>الساعات</th>
         <th>علامة المادة</th>
       </tr>
     </thead>
@@ -370,8 +392,7 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
       <td>${course.hours}</td>
       <td>${course.gradeValue.toFixed(2)}</td>
     </tr>
-    
-  `;
+    `;
   });
 
   resultHTML += `
@@ -385,7 +406,7 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
       <thead>
         <tr>
           <th>المعدل التراكمي القديم</th>
-          <th> الساعات التراكمية القديمة</th>
+          <th>الساعات التراكمية القديمة</th>
         </tr>
       </thead>
       <tbody>
@@ -404,7 +425,7 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
       <thead>
         <tr>
           <th>المعدل الفصلي</th>
-          <th> الساعات الفصلية</th>
+          <th>الساعات الفصلية</th>
         </tr>
       </thead>
       <tbody>
@@ -441,10 +462,11 @@ function displayResult(newGPA, totalHours, newCourses, previousGPA, previousHour
 
 function getGPACategory(gpa) {
   if (gpa >= 3.65 && gpa <= 4.00) return 'ممتاز';
+    if (gpa >= 3.65) return 'ممتاز';
   if (gpa >= 3.00 && gpa <= 3.64) return 'جيد جداً';
   if (gpa >= 2.50 && gpa <= 2.99) return 'جيد';
   if (gpa >= 2.00 && gpa <= 2.49) return 'مقبول';
-  if (gpa >= 0.50 && gpa <= 1.99) return 'ضعيف';
+  if (gpa >= 0.50 && gpa <= 1.99) return 'ضعيف'
 }
 
 function resetForm() {
