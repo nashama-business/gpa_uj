@@ -5,8 +5,6 @@
     text-decoration: none;
     list-style: none;
     caret-color: transparent;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .error-message {
@@ -66,7 +64,6 @@ body {
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    text-rendering: optimizeLegibility;
 }
 
 .wrapper {
@@ -84,8 +81,6 @@ body {
     text-align: center;
     margin: 20px auto;
     padding: 20px;
-    contain: layout size;
-    content-visibility: auto;
 }
 
 h1 {
@@ -122,7 +117,6 @@ label i {
     gap: 8px;
     margin-top: 8px;
     margin-bottom: 15px;
-    contain: layout size;
 }
 
 .option-button {
@@ -138,8 +132,6 @@ label i {
     text-align: center;
     font-size: 14px;
     font-weight: 500;
-    contain: layout size;
-    will-change: transform;
 }
 
 .option-button:hover {
@@ -165,7 +157,6 @@ input {
     transition: border-color 0.3s ease;
     background: #FFFFFF;
     color: #1E191A;
-    contain: layout size;
 }
 
 input:focus {
@@ -236,8 +227,6 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
-    contain: layout size;
-    will-change: transform;
 }
 
 button:hover {
@@ -254,8 +243,6 @@ button:hover {
     background: #f8f9fa;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    contain: layout size;
-    content-visibility: auto;
 }
 
 .result h2 {
@@ -293,7 +280,7 @@ button:hover {
 .gpa-value {
     font-size: 28px;
     font-weight: 700;
-    color: #1E191A;
+    color: #EE161F;
     display: inline-block;
     margin-right: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -301,7 +288,7 @@ button:hover {
 
 .category {
     font-size: 20px;
-    color: #1E191A;
+    color: #EE161F;
     font-weight: 600;
     display: inline-block;
     margin-right: 10px;
@@ -315,7 +302,6 @@ button:hover {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    contain: layout size;
 }
 
 .result table th {
@@ -332,8 +318,6 @@ button:hover {
     text-align: center;
     border: 1px solid #e0e0e0;
     background: #FFFFFF;
-    color: #1E191A;
-    contain: layout size;
 }
 
 .result table tr:nth-child(even) td {
@@ -345,285 +329,100 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 15px;
-        margin: 10px auto;
-        contain: layout size;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-
-    .button-group {
-        gap: 5px;
-        contain: layout size;
-    }
-
-    .option-button {
-        padding: 6px 10px;
-        font-size: 12px;
-        min-width: 45px;
-        contain: layout size;
-    }
-
-    input {
-        padding: 10px 30px;
-        font-size: 13px;
-    }
-
-    button {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-
     .result {
         padding: 15px;
-        margin-top: 15px;
-        margin-bottom: 50px;
-        contain: layout size;
+        margin-top: 20px;
+        margin-bottom: 60px;
     }
 
     .result h2 {
-        font-size: 18px;
-        margin-bottom: 15px;
+        font-size: 20px;
+        margin-bottom: 20px;
     }
 
     .gpa-value {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .category {
-        font-size: 16px;
-    }
-
-    .result table {
-        font-size: 12px;
-        contain: layout size;
+        font-size: 18px;
     }
 
     .result table th,
     .result table td {
         padding: 8px 10px;
-        contain: layout size;
-    }
-
-    .footer__content p {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        width: 100%;
-        padding: 10px;
-        margin: 5px auto;
-    }
-
-    h1 {
-        font-size: 1.2rem;
-    }
-
-    .button-group {
-        gap: 3px;
-    }
-
-    .option-button {
-        padding: 5px 8px;
-        font-size: 11px;
-        min-width: 40px;
-    }
-
-    input {
-        padding: 8px 25px;
-        font-size: 12px;
-    }
-
-    button {
-        padding: 8px 12px;
-        font-size: 13px;
-    }
-
-    .result {
-        padding: 10px;
-    }
-
-    .result h2 {
-        font-size: 16px;
-    }
-
-    .gpa-value {
-        font-size: 18px;
-    }
-
-    .category {
         font-size: 14px;
     }
+}
 
-    .result table {
-        font-size: 11px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 
-    .result table th,
-    .result table td {
-        padding: 6px 8px;
-    }
-
-    .footer__content p {
-        font-size: 0.7rem;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media (max-width: 320px) {
-    .container {
-        padding: 5px;
+.result table {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
     }
 
-    h1 {
-        font-size: 1rem;
-    }
-
-    .button-group {
-        gap: 2px;
-    }
-
-    .option-button {
-        padding: 4px 6px;
-        font-size: 10px;
-        min-width: 35px;
-    }
-
-    input {
-        padding: 6px 20px;
-        font-size: 11px;
-    }
-
-    button {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
-
-    .result {
-        padding: 8px;
-    }
-
-    .result h2 {
-        font-size: 14px;
-    }
-
-    .gpa-value {
-        font-size: 16px;
-    }
-
-    .category {
-        font-size: 12px;
-    }
-
-    .result table {
-        font-size: 10px;
-    }
-
-    .result table th,
-    .result table td {
-        padding: 4px 6px;
-    }
-
-    .footer__content p {
-        font-size: 0.6rem;
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-/* تحسينات إضافية للشاشات الكبيرة */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1000px;
-        contain: layout size;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .button-group {
-        gap: 12px;
-        contain: layout size;
-    }
-
-    .option-button {
-        padding: 12px 20px;
-        font-size: 16px;
-        min-width: 70px;
-    }
-
-    input {
-        padding: 15px 40px;
-        font-size: 16px;
-    }
-
-    button {
-        padding: 15px 25px;
-        font-size: 18px;
-    }
-
-    .result {
-        padding: 30px;
-        contain: layout size;
-    }
-
-    .result h2 {
-        font-size: 28px;
-    }
-
-    .gpa-value {
-        font-size: 32px;
-    }
-
-    .category {
-        font-size: 24px;
-    }
-
-    .result table {
-        font-size: 16px;
-        contain: layout size;
-    }
-
-    .result table th,
-    .result table td {
-        padding: 15px 20px;
-        contain: layout size;
-    }
+.result table td:last-child {
+    font-weight: 600;
+    color: #007B3A;
 }
 
-/* تحسينات للشاشات المتوسطة */
-@media (min-width: 769px) and (max-width: 1199px) {
-    .container {
-        max-width: 900px;
-        contain: layout size;
-    }
-
-    .button-group {
-        gap: 8px;
-        contain: layout size;
-    }
-
-    .option-button {
-        padding: 8px 15px;
-        font-size: 14px;
-        min-width: 55px;
-    }
-
-    input {
-        padding: 12px 35px;
-        font-size: 14px;
-    }
-
-    button {
-        padding: 12px 20px;
-        font-size: 16px;
-    }
+animation effects to rows */ .result table tr {
+    transition: all 0.3s ease;
 }
+
+.result table tr:hover {
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background: #007B3A;
+    color: #FFFFFF;
+}
+
+table tr:nth-child(even) {
+    background: #F9F9F9;
+}
+
+table tr:hover {
+    background: #EAEAEA;
+}
+
 
 .bottom-bar {
     backdrop-filter: blur(10px);
@@ -644,6 +443,46 @@ button:hover {
 
 .logo__img {
     height: 50px;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        font-size: 12px;
+        padding: 8px 20px;
+        border-radius: 8px;
+        background: #007B3A;
+        border: 1px solid #D02024;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+
+    .line {
+        fill: none;
+        stroke: rgb(197, 15, 15);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3;
+        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line-top-bottom {
+        stroke-dasharray: 12 63;
+    }
+
+    .button-group {
+        gap: 5px;
+    }
+
+    .option-button {
+        padding: 6px 10px;
+        font-size: 12px;
+        min-width: 50px;
+    }
 }
 
 .footer {
@@ -718,31 +557,4 @@ button:hover {
     border-top-color: rgba(0, 0, 0, 0.8);
     margin-bottom: -6px;
     z-index: 1000;
-}
-
-@layer base {
-    .container, .button-group, .result, .result table {
-        contain: layout size;
-    }
-}
-
-.result {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 500px;
-}
-
-.result table {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in-out forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
